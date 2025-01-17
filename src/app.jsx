@@ -1,7 +1,22 @@
 import React from 'react';
 import { FaClipboard } from 'react-icons/fa';
-
+import {userForm} from "./useForm"
 function App(){
+
+    const[values,setValues] = userForm({
+        length: 6,
+        uppercase:true,
+        lowercase:true,
+        number:true,
+        symbol:true,
+
+
+    });
+
+
+
+
+
     return(
         <section>
           <div className="container">
