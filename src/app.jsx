@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaClipboard } from 'react-icons/fa';
 import { useForm } from "./useForm";
+import { getRandomChar } from "./utils";
 
 function App(){
 
@@ -13,14 +14,33 @@ function App(){
 
 
     });
-    
+    const[result,setResult] = useState("");
+
+    const fieldsArray = [
+        {
+        field: values.uppercase,
+        getChar : getRandomChar(65,90)
+        },
+        {
+        field: values.lowercase,
+        getChar : getRandomChar(97,122)
+        },
+        {
+            field: values.number,
+            getChar: getRandomChar(48,57)
+        }
+        
+];
+
+
     return(
         <section>
           <div className="container">
             <form id="pg-form">
                 <div className="result">
                     <input type="text" id="result"
-                    placeholder="Minimum 6 characters"readOnly/>
+                    placeholder="Minimum 6 characters"readOnly
+                    value ={result}/>
                     <div className="clipboard">
                         <FaClipboard></FaClipboard>
 
@@ -29,7 +49,7 @@ function App(){
                 <div>
                    <div className="field">
                     <label htmlFor="length">length</label>
-                    <input type="number" id="length"min={6} max={25}
+                    <input type="number" id="length"min={6} max={10}
                     name="length" value = {values.length} onChange={setValues}/>
                    </div>
                    <div className="field">
