@@ -10,8 +10,15 @@ function App(){
                     <input type="text" id="result"
                     placeholder="Minimum 6 characters"readOnly/>
                     <div className="clipboard">
+                        <FaClipboard></FaClipboard>
 
                     </div>
+                </div>
+                <div>
+                   <div className="field">
+                    <label htmlFor="length">Length</label>
+                    <input type="number" id="Length"min={6} max={25}/>
+                   </div>
                 </div>
             </form>
             </div>  
