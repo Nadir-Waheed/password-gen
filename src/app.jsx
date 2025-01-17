@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaClipboard } from 'react-icons/fa';
-import {userForm} from "./useForm"
+import { useForm } from "./useForm";
+
 function App(){
 
-    const[values,setValues] = userForm({
+    const[values,setValues] = useForm({
         length: 6,
         uppercase:true,
         lowercase:true,
@@ -27,33 +28,33 @@ function App(){
                 </div>
                 <div>
                    <div className="field">
-                    <label htmlFor="length">Length</label>
-                    <input type="number" id="Length"min={6} max={25}
-                    name="length" value = {values.length} onCHange={setValues}/>
+                    <label htmlFor="length">length</label>
+                    <input type="number" id="length"min={6} max={25}
+                    name="length" value = {values.length} onChange={setValues}/>
                    </div>
                    <div className="field">
-                    <label htmlFor="Uppercase">Uppercase</label>
-                    <input type="checkbox"id = "Uppercase"
+                    <label htmlFor="uppercase">uppercase</label>
+                    <input type="checkbox"id = "uppercase"
                     name = "uppercase"
                     checked = {values.uppercase}
                     onChange = {setValues}
                     />
                    </div>
                    <div className="field">
-                    <label htmlFor="Lowercase">Lowercase</label>
-                    <input type="checkbox"id = "Lowercase"
+                    <label htmlFor="lowercase">lowercase</label>
+                    <input type="checkbox"id = "lowercase"
                     name= "lowercase" checked = {values.lowercase} onChange = {setValues}              
                     />
                    </div>
                    <div className="field">
-                    <label htmlFor="Number">Number</label>
-                    <input type="checkbox"id = "Number"
+                    <label htmlFor="number">number</label>
+                    <input type="checkbox"id = "number"
                     name = "number" checked={values.number} onChange={setValues}
                     />
                    </div>
                    <div className="field">
-                    <label htmlFor="Symbol">Symbol</label>
-                    <input type="checkbox"id = "Symbol"
+                    <label htmlFor="symbol">symbol</label>
+                    <input type="checkbox"id = "symbol"
                     name = "symbol" checked={values.symbol} onChange={setValues} />
                    </div>
                 </div>
