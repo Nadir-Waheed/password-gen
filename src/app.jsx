@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaClipboard } from 'react-icons/fa';
 import { useForm } from "./useForm";
-import { getRandomChar } from "./utils";
+import { getRandomChar, getSpecialChar } from "./utils";
 
 function App(){
 
@@ -19,24 +19,49 @@ function App(){
     const fieldsArray = [
         {
         field: values.uppercase,
-        getChar : getRandomChar(65,90)
+        getChar: ()=> getRandomChar(65,90)
         },
         {
         field: values.lowercase,
-        getChar : getRandomChar(97,122)
+        getChar: () => getRandomChar(97,122)
         },
         {
             field: values.number,
-            getChar: getRandomChar(48,57)
-        }
+            getChar:() => getRandomChar(48,57)
+        },
+        {
+            field: values.symbol,
+            getChar: () => getSpecialChar(),
+        },
         
 ];
 
 
+const handleOnSubmit = (e) => {
+    e.preventDefault();
+    let generatedPasssword = '';
+    const checkedFields = fieldsArray.filter(({
+        field}) => field);
+
+        for(let i =0; i < values.length; i++){
+            const index = Math.floor(Math.random()* checkedFields.length);
+            const letter = checkedFields[index].getChar()
+
+            if(letter){
+                generatedPasssword += letter;
+            }
+        }
+        if(generatedPasssword){
+            setResult(generatedPasssword)
+        }
+
+
+}
+
     return(
         <section>
           <div className="container">
-            <form id="pg-form">
+            <form id="pg-form" onSubmit={handleOnSubmit}>
                 <div className="result">
                     <input type="text" id="result"
                     placeholder="Minimum 6 characters"readOnly
