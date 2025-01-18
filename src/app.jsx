@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaClipboard } from 'react-icons/fa';
 import { useForm } from "./useForm";
 import { getRandomChar, getSpecialChar } from "./utils";
-
+import { toast } from "react-hot-toast";
 function App(){
 
     const[values,setValues] = useForm({
@@ -45,7 +45,7 @@ const handleOnSubmit = (e) => {
 
         for(let i =0; i < values.length; i++){
             const index = Math.floor(Math.random()* checkedFields.length);
-            const letter = checkedFields[index].getChar()
+            const letter = checkedFields[index]?.getChar()
 
             if(letter){
                 generatedPasssword += letter;
@@ -53,11 +53,20 @@ const handleOnSubmit = (e) => {
         }
         if(generatedPasssword){
             setResult(generatedPasssword)
+        }else{
+            toast.error("Please select atleast one option")
         }
 
 
-}
-
+};
+    const handleClipboard = async ()=>{
+        if(result){
+            await navigator.clipboard.writeText(result);
+            toast.success('Copied to clipboard');
+        } else{
+            toast.error('No password to copy');
+        }
+    }
     return(
         <section>
           <div className="container">
@@ -66,7 +75,7 @@ const handleOnSubmit = (e) => {
                     <input type="text" id="result"
                     placeholder="Minimum 6 characters"readOnly
                     value ={result}/>
-                    <div className="clipboard">
+                    <div className="clipboard" onClick= {handleClipboard}>
                         <FaClipboard></FaClipboard>
 
                     </div>
